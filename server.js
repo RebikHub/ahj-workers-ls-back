@@ -8,10 +8,17 @@ const slow = require('koa-slow');
 const router = new Router();
 const app = new Koa();
 
-const news = {
-    date: 'date',
-    img: 'http://url.com',
-    text: 'Dune - 2021'
+function createNews() {
+    const arrayNews = [];
+    for (let i = 0; i < 3; i++) {
+        const news = {
+            date: faker.time.recent(),
+            img: faker.image.image(),
+            text: faker.lorem.paragraph(),
+        }
+        arrayNews.push(news);
+    }
+    return arrayNews;
 }
 
 app.use(koaBody({
@@ -29,7 +36,7 @@ app.use(cors({
 }));
 
 router.get('/news', async (ctx) => {
-    ctx.response.body = news;
+    ctx.response.body = createNews();
     ctx.status = 200;
 });
 
