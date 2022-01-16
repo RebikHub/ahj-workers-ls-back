@@ -40,6 +40,10 @@ router.get('/news', async (ctx) => {
     ctx.status = 200;
 });
 
+app.use(slow({
+    delay: 5000
+}));
+
 app.use(router.routes()).use(router.allowedMethods());
 
 const port = process.env.PORT || 3333;
