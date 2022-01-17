@@ -4,7 +4,6 @@ const cors = require('koa2-cors');
 const Router = require('koa-router');
 const faker = require('faker');
 const slow = require('koa-slow');
-
 const router = new Router();
 const app = new Koa();
 
@@ -41,7 +40,7 @@ router.get('/news', async (ctx) => {
 });
 
 app.use(slow({
-    delay: 5000
+    delay: 3000
 }));
 
 app.use(router.routes()).use(router.allowedMethods());
